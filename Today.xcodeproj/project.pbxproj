@@ -14,6 +14,9 @@
 		BA59B93229D2EE3E0056BBDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA59B93129D2EE3E0056BBDD /* Assets.xcassets */; };
 		BA59B93529D2EE3E0056BBDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA59B93329D2EE3E0056BBDD /* LaunchScreen.storyboard */; };
 		BA59B93E29D3DB240056BBDD /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA59B93D29D3DB240056BBDD /* Reminder.swift */; };
+		BAFBDA2529DC02FD005E497A /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFBDA2429DC02FD005E497A /* Date+Today.swift */; };
+		BAFBDA2729DC0A61005E497A /* UIColor+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFBDA2629DC0A61005E497A /* UIColor+Today.swift */; };
+		BAFBDA2A29DC1DA5005E497A /* ReminderListViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFBDA2929DC1DA5005E497A /* ReminderListViewController+DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		BA59B93429D2EE3E0056BBDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA59B93629D2EE3E0056BBDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA59B93D29D3DB240056BBDD /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		BAFBDA2429DC02FD005E497A /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
+		BAFBDA2629DC0A61005E497A /* UIColor+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Today.swift"; sourceTree = "<group>"; };
+		BAFBDA2929DC1DA5005E497A /* ReminderListViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+DataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +67,7 @@
 				BA59B93C29D3DADC0056BBDD /* Models */,
 				BA59B92829D2EE3D0056BBDD /* AppDelegate.swift */,
 				BA59B92A29D2EE3D0056BBDD /* SceneDelegate.swift */,
-				BA59B92C29D2EE3D0056BBDD /* ReminderListViewController.swift */,
+				BAFBDA2829DC1D48005E497A /* ListViewController */,
 				BA59B92E29D2EE3D0056BBDD /* Main.storyboard */,
 				BA59B93129D2EE3E0056BBDD /* Assets.xcassets */,
 				BA59B93329D2EE3E0056BBDD /* LaunchScreen.storyboard */,
@@ -74,8 +80,19 @@
 			isa = PBXGroup;
 			children = (
 				BA59B93D29D3DB240056BBDD /* Reminder.swift */,
+				BAFBDA2429DC02FD005E497A /* Date+Today.swift */,
+				BAFBDA2629DC0A61005E497A /* UIColor+Today.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BAFBDA2829DC1D48005E497A /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA59B92C29D2EE3D0056BBDD /* ReminderListViewController.swift */,
+				BAFBDA2929DC1DA5005E497A /* ReminderListViewController+DataSource.swift */,
+			);
+			path = ListViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +167,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA59B92D29D2EE3D0056BBDD /* ReminderListViewController.swift in Sources */,
+				BAFBDA2529DC02FD005E497A /* Date+Today.swift in Sources */,
 				BA59B92929D2EE3D0056BBDD /* AppDelegate.swift in Sources */,
 				BA59B92B29D2EE3D0056BBDD /* SceneDelegate.swift in Sources */,
+				BAFBDA2A29DC1DA5005E497A /* ReminderListViewController+DataSource.swift in Sources */,
 				BA59B93E29D3DB240056BBDD /* Reminder.swift in Sources */,
+				BAFBDA2729DC0A61005E497A /* UIColor+Today.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +327,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +356,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
