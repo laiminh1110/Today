@@ -6,40 +6,41 @@
 //https://developer.apple.com/tutorials/app-dev-training/creating-a-list-view
 
 import UIKit
-/**
- - Create a list view in UICollection view
- + Define item identifier type (reminder model)
- + Define section indentifier type
- + Configure the collection view with List layout
- + Define how data in shown using cell registration
- + Define the collection view 's data source
- + create and apply a snapshot to the data source
- */
+
 class ReminderListViewController: UICollectionViewController {
    lazy var dataSource:DataSource! = makeDataSource() // The object you use to manage data and provide cells for a collection view.
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Assign the list layout to the collection view layout.
+        
+        //Configure the collection as a list
         let listLayout = listLayout()
         collectionView.collectionViewLayout = listLayout
         applyInitialSnapshots()
     }
     
-    // create a diffable data source
+    /**
+        create a diffable data source "UICollectionViewDiffableDataSource"
+        The object you use to manage data and provide cells for a collection view.
+     */
     func makeDataSource() -> DataSource {
         let cellRegistration = UICollectionView.CellRegistration(handler: cellRegistrationHandler)
-        return DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        return DataSource(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier)  -> UICollectionViewCell? in
+            //Dequeue and return a cell using the cell registration.
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
     }
     
+    
+    // => You’ve created and initialized the data source, but you still need to inform the data source when data changes.
     func applyInitialSnapshots(){
-        // Define snapshot with same <section,item> types as the data source.
-        var initialSnapshot = NSDiffableDataSourceSnapshot<Int, String>()
-        initialSnapshot.appendSections([0]) // there is only one section on list view
-        initialSnapshot.appendItems(Reminder.sampleData.map{$0.title} )
-        dataSource.apply(initialSnapshot, animatingDifferences: false)
+        //  A snapshot represents the state of your data at a specific point in time
+        // create a snapshot
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        //// Populate the snapshot.
+            snapshot.appendSections([0]) // there is only one section on list view
+            snapshot.appendItems(Reminder.sampleData.map{$0.title})
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     // Created List Layout
