@@ -16,10 +16,7 @@ import UIKit
 
 
 extension ReminderListViewController{
-    //Add a type alias for the diffable data source.
-    typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String> //A representation of the state of the data in a view at a specific point in time.
-    
+   
     // CellProvider = (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ itemIdentifier: ItemIdentifierType) -> UICollectionViewCell?
     //  you’ll register the cells in the collection view, use a content configuration to define the appearance of the cells,
     func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, id: String) {
