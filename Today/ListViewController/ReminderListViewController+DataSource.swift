@@ -19,8 +19,8 @@ extension ReminderListViewController{
    
     // CellProvider = (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ itemIdentifier: ItemIdentifierType) -> UICollectionViewCell?
     //  you’ll register the cells in the collection view, use a content configuration to define the appearance of the cells,
-    func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, id: String) {
-        let reminder = Reminder.sampleData[indexPath.item]
+    func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, id: Reminder.ID) {
+        let reminder = reminder(withId: id)
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = reminder.title
         contentConfiguration.secondaryText = reminder.dueDate.dayAndTimeText
@@ -39,6 +39,16 @@ extension ReminderListViewController{
         backgroundConfiguration.backgroundColor = .todayListCellBackground
         cell.backgroundConfiguration = backgroundConfiguration
         
+    }
+    
+    func reminder(withId id: Reminder.ID) -> Reminder{
+        let index = reminders.indexOfReminder(withId: id)
+        return reminders[index]
+    }
+    
+    func updateReminder(_ reminder:Reminder){
+        let index = reminders.indexOfReminder(withId: reminder.id)
+        reminders[index] = reminder
     }
     
     private func doneButtonConfiguration(for reminder: Reminder) -> UICellAccessory.CustomViewConfiguration{

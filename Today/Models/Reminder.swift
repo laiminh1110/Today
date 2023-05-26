@@ -7,12 +7,30 @@
 
 import Foundation
 
-struct Reminder {
+struct Reminder :Identifiable{
+    var id:String = UUID().uuidString
     var title:String
     var dueDate:Date
     var notes:String? = nil
     var isComplete:Bool = false
 }
+
+
+
+// add an extension on array of reminders.
+extension [Reminder] {
+    // Create a func that return the index of a specific reminder
+    func indexOfReminder(withId id: Reminder.ID) -> Self.Index{  // Array.Index is a type alias for Int.
+        guard let index = firstIndex(where: {$0.id == id}) else {fatalError()}
+        return index
+    }
+}
+
+// you could also use a where clause to conditionally extent a generic type, like this:
+//extension Array where Element == Reminder{}
+
+
+
 
 //You can use this flag for testing code in debug builds
 #if DEBUG

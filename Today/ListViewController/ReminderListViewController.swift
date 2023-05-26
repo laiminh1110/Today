@@ -8,9 +8,10 @@
 import UIKit
 
 class ReminderListViewController: UICollectionViewController {
+    var reminders:[Reminder] = Reminder.sampleData
     //Add a type alias for the diffable data source.
-    typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String> //A representation of the state of the data in a view at a specific point in time.
+    typealias DataSource = UICollectionViewDiffableDataSource<Int, Reminder.ID>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Reminder.ID> //A representation of the state of the data in a view at a specific point in time.
     lazy var dataSource:DataSource! = makeDataSource() // The object you use to manage data and provide cells for a collection view.
     
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class ReminderListViewController: UICollectionViewController {
      */
     func makeDataSource() -> DataSource {
         let cellRegistration = UICollectionView.CellRegistration(handler: cellRegistrationHandler)
-        return DataSource(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier)  -> UICollectionViewCell? in
+        return DataSource(collectionView: collectionView) { (collectionView:UICollectionView, indexPath:IndexPath, itemIdentifier:Reminder.ID) -> UICollectionViewCell? in
             //Dequeue and return a cell using the cell registration.
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
@@ -43,7 +44,7 @@ class ReminderListViewController: UICollectionViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
         //// Populate the snapshot.
         snapshot.appendSections([0]) // there is only one section on list view
-        snapshot.appendItems(Reminder.sampleData.map{$0.title})
+        snapshot.appendItems(reminders.map{$0.id})
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
